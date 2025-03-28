@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 1 - Add Players and Teams</title>
+</head>
+<body>
+    <h1>Step 1: Add Players and Teams</h1>
+    
+    <form method="POST">
+        <label for="player">Player:</label>
+        <input type="text" name="player" required>
+        
+        <label for="team">Select an Existing Team:</label>
+        <select name="team">
+            <option value="">-- Choose a team --</option>
+            {% for team in unique_teams %}
+                <option value="{{ team }}">{{ team }}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+        
+        <label for="new_team">Or Add a New Team:</label>
+        <input type="text" name="new_team" placeholder="New team name">
+
+        <button type="submit">Add Player</button>
+    </form>
+
+    <h2>Current Players and Teams</h2>
+    <ul>
+        {% for player, team in teams.items() %}
+            <li>{{ player }} - {{ team }}</li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('step2') }}">
+        <button type="submit">Next Step</button>
+    </form>
+
+    <!-- Button to start a new session -->
+    <form method="GET" action="{{ url_for('new_session') }}">
+        <button type="submit">Start New Session</button>
+    </form>
+</body>
+</html>

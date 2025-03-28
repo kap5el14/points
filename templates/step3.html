@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3 - Team Points</title>
+</head>
+<body>
+    <h1>Step 3: Team Points</h1>
+    <h2>Points Summary</h2>
+    <ul>
+        {% for team, points in result %}
+            <li>{{ team }} - {{ points }} points</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Button to start a new session -->
+    <form method="GET" action="{{ url_for('new_session') }}">
+        <button type="submit">Start New Session</button>
+    </form>
+</body>
+</html>

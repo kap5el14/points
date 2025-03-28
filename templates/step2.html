@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 2 - Assign Places</title>
+</head>
+<body>
+    <h1>Step 2: Assign Places to Players</h1>
+    <form method="POST">
+        <label for="player">Select Player:</label>
+        <select name="player" required>
+            {% for player in remaining_players %}
+                <option value="{{ player }}">{{ player }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Add</button>
+    </form>
+
+    <h2>Assigned Places</h2>
+    <ol>
+        {% for player in places %}
+            <li>{{ player }}</li>
+        {% endfor %}
+    </ol>
+
+    <form method="GET" action="{{ url_for('step3') }}">
+        <button type="submit">Next Step</button>
+    </form>
+
+    <!-- Button to start a new session -->
+    <form method="GET" action="{{ url_for('new_session') }}">
+        <button type="submit">Start New Session</button>
+    </form>
+</body>
+</html>
